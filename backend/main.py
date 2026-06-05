@@ -70,7 +70,7 @@ def extract_json_from_ai(text: str):
         "mitre_tactic": "Credential Access",
         "mitre_technique": "T1110 - Brute Force",
         "confidence": 70,
-        "recommended_action": "Investigate failed login activity and enforce MFA.",
+        "recommended_action": "Investigate suspicious activity and apply defensive controls.",
         "safety_status": "Suspicious",
     }
 
@@ -130,6 +130,7 @@ def health():
         "service": "AutoThreatOps",
         "model": "llama3",
         "database": "sqlite",
+        "monitoring": "windows-security-events",
     }
 
 
@@ -146,7 +147,9 @@ async def analyze():
 
         try:
             alerts = read_security_logs()
-            alerts = alerts[:1]
+
+            # Analyze up to 5 detected event categories.
+            alerts = alerts[:5]
 
             results = []
 
@@ -164,7 +167,7 @@ async def analyze():
                 event_id = str(
                     alert.get(
                         "event_id",
-                        "4625",
+                        "Unknown",
                     )
                 )
 
@@ -191,7 +194,10 @@ async def analyze():
                 )
 
                 severity = normalize_severity(
-                    parsed_ai.get("severity")
+                    parsed_ai.get(
+                        "severity",
+                        alert.get("severity", "High"),
+                    )
                 )
 
                 threat_log = ThreatLog(
@@ -204,16 +210,22 @@ async def analyze():
                     ),
                     mitre_tactic=parsed_ai.get(
                         "mitre_tactic",
-                        "Credential Access",
+                        alert.get(
+                            "mitre_tactic",
+                            "Credential Access",
+                        ),
                     ),
                     mitre_technique=parsed_ai.get(
                         "mitre_technique",
-                        "T1110 - Brute Force",
+                        alert.get(
+                            "mitre_technique",
+                            "T1110 - Brute Force",
+                        ),
                     ),
                     confidence=confidence,
                     recommended_action=parsed_ai.get(
                         "recommended_action",
-                        "Investigate suspicious login activity.",
+                        "Investigate suspicious activity and apply defensive controls.",
                     ),
                     safety_status=parsed_ai.get(
                         "safety_status",
@@ -221,9 +233,6 @@ async def analyze():
                     ),
                     source=source,
                     event_id=event_id,
-
-                    # IMPORTANT:
-                    # local system time, not UTC
                     created_at=datetime.now(),
                 )
 
