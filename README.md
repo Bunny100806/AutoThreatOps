@@ -1,170 +1,266 @@
-AutoThreatOps: A Multi-Agent LLM Framework for Safety-Constrained Cyber Defense Automation
-Overview
+# 🛡️ AutoThreatOps
+## 🤖 A Multi-Agent LLM Framework for Safety-Constrained Cyber Defense Automation
 
-AutoThreatOps is an AI-powered SOC (Security Operations Center) platform that uses CrewAI multi-agent orchestration and LLM-driven cybersecurity analysis to automate Windows threat detection, risk assessment, incident response recommendations, and analytics visualization.
+![Python](https://img.shields.io/badge/Python-3.11+-blue?style=for-the-badge&logo=python)
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green?style=for-the-badge&logo=fastapi)
+![React](https://img.shields.io/badge/React-Frontend-61DAFB?style=for-the-badge&logo=react)
+![CrewAI](https://img.shields.io/badge/CrewAI-Multi--Agent-orange?style=for-the-badge)
+![Ollama](https://img.shields.io/badge/Ollama-Llama3-purple?style=for-the-badge)
+![SQLite](https://img.shields.io/badge/SQLite-Database-lightgrey?style=for-the-badge&logo=sqlite)
+![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)
 
-The platform continuously analyzes Windows Security Events, generates AI threat intelligence using Llama3 via Ollama, stores incidents in SQLite, and visualizes them through a modern React dashboard.
+---
 
-Features
-AI-Powered Threat Analysis
-CrewAI Multi-Agent Architecture
-Windows Security Event Monitoring
-MITRE ATT&CK Mapping
-Risk Scoring System
-Threat Severity Classification
-Threat History Storage
-Real-Time Security Analytics
-Interactive React Dashboard
-Login & Registration System
-Brute Force Detection
-SQLite Threat Database
-Ollama + Llama3 Integration
-FastAPI Backend APIs
-Tech Stack
-Backend
-FastAPI
-Python
-CrewAI
-Ollama
-Llama3
-SQLAlchemy
-SQLite
-Frontend
-React.js
-Tailwind CSS
-Recharts
-System Architecture
-Windows Security Logs
-        ↓
-CrewAI Agents
-        ↓
-Llama3 (Ollama)
-        ↓
-Threat Analysis Engine
-        ↓
-SQLite Database
-        ↓
-React Dashboard
-Project Structure
-AutoThreatOps/
+## 🚀 Project Overview
+
+AutoThreatOps is an AI-powered Security Operations Center (SOC) platform that combines:
+
+🧠 Large Language Models (LLMs)
+
+🤖 Multi-Agent Artificial Intelligence
+
+🛡️ Cyber Threat Intelligence
+
+📊 Security Analytics
+
+⚡ Real-Time Windows Event Monitoring
+
+The framework automatically collects Windows security events, analyzes threats using multiple AI agents, assigns MITRE ATT&CK mappings, generates risk scores, and provides actionable response recommendations through an interactive SOC dashboard.
+
+---
+
+## 🎯 Research Objectives
+
+Modern Security Operations Centers face:
+
+🚨 Alert Overload
+
+⏳ Slow Incident Response
+
+😓 Analyst Fatigue
+
+❌ False Positives
+
+🔍 Complex Threat Investigation
+
+AutoThreatOps addresses these challenges through AI-driven cybersecurity automation and intelligent multi-agent collaboration.
+
+---
+
+## 🏗️ System Architecture
+
+### 🔎 Threat Analysis Agent
+- Analyzes security events
+- Identifies suspicious behavior
+- Generates threat summaries
+
+### ⚠️ Risk Assessment Agent
+- Evaluates severity levels
+- Calculates risk scores
+- Prioritizes incidents
+
+### ✅ Verification Agent
+- Validates AI-generated outputs
+- Improves reliability
+- Reduces hallucinations
+
+### 🛠️ Response Planning Agent
+- Generates mitigation recommendations
+- Suggests response actions
+- Supports security analysts
+
+---
+
+## ⚙️ Technology Stack
+
+| Layer | Technology |
+|---------|------------|
+| 🖥️ Frontend | ReactJS |
+| 🔗 Backend | FastAPI |
+| 🤖 AI Framework | CrewAI |
+| 🧠 LLM | LLaMA 3 |
+| 🚀 Runtime | Ollama |
+| 🗄️ Database | SQLite |
+| 📈 Visualization | Recharts |
+| 📋 Log Source | Windows Event Logs |
+
+---
+
+## ✨ Key Features
+
+✅ Real-Time Threat Monitoring
+
+✅ Multi-Agent AI Analysis
+
+✅ MITRE ATT&CK Mapping
+
+✅ Threat Verification
+
+✅ Risk Scoring
+
+✅ Confidence Scoring
+
+✅ Threat Intelligence Storage
+
+✅ Security Analytics Dashboard
+
+✅ Threat History Management
+
+✅ Automated Recommendations
+
+---
+
+## 🚨 Example Threats Detected
+
+### 🔑 Failed Login Attempt
+- Event ID: 4625
+- Severity: High
+- MITRE: T1110 - Brute Force
+
+### 🔓 Privilege Escalation Indicator
+- Event ID: 4672
+- Severity: High
+- MITRE: T1078 - Valid Accounts
+
+### 💻 Suspicious PowerShell Execution
+- Event ID: 4104
+- Severity: High
+- MITRE: T1059.001 - PowerShell
+
+---
+
+## 📂 Project Structure
+
+```text
+AutoThreatOps
 │
-├── backend/
+├── backend
 │   ├── main.py
 │   ├── ai_agents.py
-│   ├── models.py
 │   ├── database.py
-│   ├── security.py
-│   ├── auth.py
+│   ├── models.py
 │   ├── windows_logs.py
-│   ├── requirements.txt
 │   └── autothreatops.db
 │
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── App.js
-│   │   └── index.js
-│   │
-│   ├── package.json
-│   ├── tailwind.config.js
-│   └── postcss.config.js
+├── frontend
+│   ├── src
+│   ├── public
+│   └── package.json
 │
-├── docs/
-├── datasets/
-└── README.md
-Installation
-1. Clone Repository
-git clone <your-repo-url>
-cd AutoThreatOps
-2. Backend Setup
+├── README.md
+└── requirements.txt
+```
+
+---
+
+## ▶️ Run Locally
+
+### 1️⃣ Start Ollama
+
+```bash
+ollama run llama3
+```
+
+### 2️⃣ Start Backend
+
+```bash
 cd backend
-python -m venv venv
-Activate Virtual Environment
-Windows
-venv\Scripts\activate
-Install Dependencies
-pip install -r requirements.txt
-3. Install Ollama
 
-Download:
+.\venv\Scripts\activate
 
-https://ollama.com/download
-4. Pull Llama3 Model
-ollama pull llama3
-5. Start Ollama
-ollama serve
-
-If port 11434 is already running, Ollama is already active.
-
-6. Start Backend Server
 uvicorn main:app --reload
+```
 
 Backend URL:
 
+```text
 http://127.0.0.1:8000
-7. Frontend Setup
+```
+
+---
+
+### 3️⃣ Start Frontend
+
+```bash
 cd frontend
+
 npm install
+
 npm start
+```
 
 Frontend URL:
 
+```text
 http://localhost:3000
-API Endpoints
-Health Check
-GET /health
-Run AI Threat Analysis
-GET /analyze
-Fetch Stored Threat History
-GET /threats
-Analytics Dashboard Data
-GET /analytics
-Register User
-POST /register
-Login User
-POST /login
-AI Threat Output Example
-{
-  "threat": "Failed Login Attempt",
-  "severity": "High",
-  "risk_score": 87,
-  "summary": "Multiple failed authentication attempts detected.",
-  "mitre_tactic": "Credential Access",
-  "mitre_technique": "T1110 - Brute Force",
-  "confidence": 95,
-  "recommended_action": "Investigate source IP and enforce MFA.",
-  "safety_status": "Suspicious"
-}
-Dashboard Features
-Threat Monitoring
-Threat History
-Real-Time Analytics
-Severity Distribution
-Threat Timeline
-Agent Status Monitoring
-Security Logs
-AI Recommendations
-MITRE ATT&CK Mapping
-Technique	Description
-T1110	Brute Force
-T1078	Valid Accounts
-T1059	Command Execution
-Future Enhancements
-SIEM Integration
-Live Windows Event Streaming
-JWT Authentication
-Role-Based Access Control
-Docker Deployment
-Kubernetes Deployment
-Cloud Threat Intelligence
-Malware Sandbox Integration
-Email Alerting
-SOC Automation Workflows
-Authors
+```
 
-Developed as a Multi-Agent AI Cyber Defense Framework using CrewAI and LLM-powered security automation.
+---
 
-License
+## 📊 Research Outcomes
 
-MIT License
+The proposed framework successfully:
+
+📌 Collected Windows Security Events
+
+📌 Performed AI-Based Threat Analysis
+
+📌 Generated MITRE ATT&CK Mappings
+
+📌 Assigned Risk & Confidence Scores
+
+📌 Produced Security Recommendations
+
+📌 Stored Threat Intelligence in SQLite
+
+📌 Visualized Results through an Interactive SOC Dashboard
+
+---
+
+## 🎓 Academic Project
+
+### 🏛️ Vistula University
+**Akademia Finansów i Biznesu Vistula**
+
+📍 Warsaw, Poland
+
+**Department of Computer Science Engineering**
+
+---
+
+## 👨‍💻 Authors
+
+### 👨‍🎓 Sai Charitharth Nadigoti
+**B.Sc. Computer Engineering**
+
+### 👨‍🎓 Ayan Shaikh
+**B.Sc. Computer Engineering**
+
+🎓 **Vistula University**  
+*(Akademia Finansów i Biznesu Vistula)*
+
+📍 **Warsaw, Poland**
+
+---
+
+## 🏆 Project Status
+
+🟢 Research Completed
+
+🟢 System Implemented
+
+🟢 Dashboard Operational
+
+🟢 Multi-Agent Integration Complete
+
+🟢 Local LLM Deployment Complete
+
+🟢 Documentation Complete
+
+---
+
+## 📜 License
+
+This project was developed for academic research and educational purposes.
+
+© 2026 AutoThreatOps Research Team
